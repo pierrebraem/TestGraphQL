@@ -17,6 +17,13 @@ export class PostResolver{
         return this.postService.getAllPosts()
     }
 
+    @Query(returns => [PostType])
+    getAllPostsByUser(
+        @Args('user') user: string
+    ){
+        return this.postService.getAllPostsByUser(user);
+    }
+
     @Query(returns => PostType)
     getPostById(
         @Args('id') id: string

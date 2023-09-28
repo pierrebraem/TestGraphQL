@@ -15,6 +15,14 @@ export class PostService {
         return this.postRepository.find()
     }
 
+    async getAllPostsByUser(user: string): Promise<Post[]>{
+        return this.postRepository.find({
+            where:{
+                user: user
+            }
+        })
+    }
+
     async getPostById(id: string): Promise<Post>{
         return this.postRepository.findOneBy({ id: id })
     }
