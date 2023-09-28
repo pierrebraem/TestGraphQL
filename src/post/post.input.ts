@@ -2,7 +2,7 @@ import { InputType, Field, ID } from '@nestjs/graphql'
 import { IsNotEmpty, IsUUID } from 'class-validator'
 
 @InputType()
-export class CreatePostInput{
+export class PostInput{
     @IsNotEmpty()
     @Field()
     content: string

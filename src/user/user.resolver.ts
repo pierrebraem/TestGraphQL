@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from "@nestjs/graphql";
 import { UserType } from "./user.type";
 import { UserService } from "./user.service";
-import { CreateUserInput } from "./user.input";
+import { UserInput } from "./user.input";
 
 @Resolver(of => UserType)
 export class UserResolver{
@@ -23,8 +23,23 @@ export class UserResolver{
 
     @Mutation(returns => UserType)
     createUser(
-        @Args('createUserInput') createUserInput: CreateUserInput
+        @Args('userInput') userInput: UserInput
     ) {
-        return this.userService.createUser(createUserInput)
+        return this.userService.createUser(userInput)
+    }
+
+    @Mutation(returns => UserType)
+    updateUser(
+        @Args('id') id: string,
+        @Args('userInput') userInput: UserInput
+    ){
+        return this.userService.updateUser(id, userInput)
+    }
+
+    @Mutation(returns => UserType)
+    deleteUser(
+        @Args('id') id: string
+    ){
+        return this.userService.deleteUser(id)
     }
 }
